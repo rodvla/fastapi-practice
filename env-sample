@@ -1,0 +1,6 @@
+MAIL_USERNAME=6c25d6263c92f6
+MAIL_PASSWORD=80c2e2da9f60f0
+MAIL_FROM=rod@mailtrap.io
+MAIL_PORT=2525
+MAIL_SERVER=sandbox.smtp.mailtrap.io
+MAIL_FROM_NAME=rod

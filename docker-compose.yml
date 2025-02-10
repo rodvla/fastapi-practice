@@ -1,0 +1,31 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:80"
+    volumes:
+      - ./app:/code/app
+    environment:
+      DATABASE_URL: "mysql+pymysql://root@db:3306/mydb"
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      MAIL_FROM:  ${MAIL_FROM}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_SERVER: ${MAIL_SERVER}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME}
+    depends_on:
+      - db
+    entrypoint: ["/bin/sh", "-c", "wait-for-it db:3306 -- fastapi run app/main.py --port 80"]
+
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: mydb
+    volumes:
+      - database_data:/var/lib/mysql
+
+volumes:
+  database_data:
