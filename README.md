@@ -33,7 +33,7 @@ Para realizar pruebas, puede utilizar un servicio como MailTrap.
 ### 3. Lanzar la aplicación
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 ## Acceso API
